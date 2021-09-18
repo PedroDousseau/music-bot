@@ -1,6 +1,7 @@
 const ytdl = require('ytdl-core-discord');
 const axios = require('axios').default;
-const { YOUTUBE_DATA_API_KEY } = require('../../config.json');
+
+const { YOUTUBE_DATA_API_KEY } = process.env;
 
 function Jukebox(textChannel, voiceChannel) {
   this.textChannel = textChannel;
@@ -19,12 +20,12 @@ Jukebox.prototype.addSongByUrl = async function addSongByUrl(url) {
   };
   this.songs.push(song);
 
-  return (`${song.title} foi adicionado à fila!`);
+  return `${song.title} foi adicionado à fila!`;
 };
 
 Jukebox.prototype.skip = function skip() {
   if (this.songs.length < 1 || !this.isPlaying) {
-    return ('A fila de músicas está vazia!');
+    return 'A fila de músicas está vazia!';
   }
 
   this.connection.dispatcher.end();
@@ -54,7 +55,8 @@ Jukebox.prototype.play = async function play() {
   }
 
   this.isPlaying = true;
-  this.connection.play(await ytdl(nextSong.url), { type: 'opus' })
+  this.connection
+    .play(await ytdl(nextSong.url), { type: 'opus' })
     .on('finish', () => {
       // Deletes the finished song from the queue
       this.songs.shift();
@@ -71,7 +73,9 @@ Jukebox.prototype.play = async function play() {
 };
 
 Jukebox.prototype.getVideoUrlByKey = async function getVideoUrlByKey(key) {
-  const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_DATA_API_KEY}&type=video&maxResults=1&q=${encodeURIComponent(key)}`;
+  const endpoint = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_DATA_API_KEY}&type=video&maxResults=1&q=${encodeURIComponent(
+    key,
+  )}`;
   try {
     const response = await axios.get(endpoint);
 

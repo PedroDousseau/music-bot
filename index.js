@@ -3,7 +3,9 @@
 
 const fs = require('fs');
 const Discord = require('discord.js');
-const { PREFIX, TOKEN, MUSIC_CHANNEL } = require('./config.json');
+require('dotenv').config();
+
+const { PREFIX, TOKEN, MUSIC_CHANNEL } = process.env;
 
 const client = new Discord.Client();
 
@@ -17,14 +19,19 @@ for (const file of commandFiles) {
 }
 
 // eslint-disable-next-line no-console
-client.once('ready', () => { console.log('Ready!'); });
+client.once('ready', () => {
+  console.log('Ready!');
+});
 
 // eslint-disable-next-line no-console
-client.once('reconnecting', () => { console.log('Reconnecting!'); });
+client.once('reconnecting', () => {
+  console.log('Reconnecting!');
+});
 
 // eslint-disable-next-line no-console
-client.once('disconnect', () => { console.log('Disconnect!'); });
-
+client.once('disconnect', () => {
+  console.log('Disconnect!');
+});
 
 client.on('message', async (message) => {
   // @@ Common verifications @@ //
