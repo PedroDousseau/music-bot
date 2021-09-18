@@ -22,7 +22,7 @@ const Play = {
       return;
     }
 
-    // check if the bot is already in channel
+    // Check if the bot is already in channel
     if (!serverJukebox.connection) {
       try {
         const connection = await serverJukebox.voiceChannel.join();
@@ -33,7 +33,7 @@ const Play = {
       }
     }
 
-    // Check if its a URL or string
+    // Check if the music an URL or a string
     let key = args[0];
     let videoUrl;
 
@@ -45,7 +45,7 @@ const Play = {
         + '(\\?[;&a-z\\d%_.~+=-]*)?' // query string
         + '(\\#[-a-z\\d_]*)?$',
       'i',
-    ); // fragment locator
+    );
 
     if (!urlPattern.test(key)) {
       key = args.join(' ');

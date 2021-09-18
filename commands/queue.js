@@ -11,7 +11,7 @@ const Queue = {
 
   userMustBeInVoiceChannel: true,
 
-  execute(message, args) {
+  execute(message) {
     const serverJukebox = jukeboxes.get(message.guild.id);
 
     let songList = '';

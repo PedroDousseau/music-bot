@@ -46,7 +46,7 @@ Jukebox.prototype.getSongs = function getSongs() {
 Jukebox.prototype.play = async function play() {
   const nextSong = this.songs[0];
 
-  // Checks if the song is empty
+  // Check if the song is empty
   if (!nextSong) {
     this.voiceChannel.leave();
     this.connection = null;
@@ -82,6 +82,7 @@ Jukebox.prototype.getVideoUrlByKey = async function getVideoUrlByKey(key) {
     const { videoId } = response.data.items[0].id;
     return `https://www.youtube.com/watch?v=${videoId}`;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     return null;
   }
