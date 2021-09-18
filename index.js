@@ -1,22 +1,16 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
-
-const fs = require('fs');
-const Discord = require('discord.js');
-require('dotenv').config();
+import * as Discord from 'discord.js';
+import * as commands from './commands/index.js';
 
 const { PREFIX, TOKEN, MUSIC_CHANNEL } = process.env;
 
 const client = new Discord.Client();
 
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.js'));
 
 // eslint-disable-next-line no-restricted-syntax
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
+Object.values(commands).forEach((command) => {
   client.commands.set(command.name, command);
-}
+});
 
 // eslint-disable-next-line no-console
 client.once('ready', () => {

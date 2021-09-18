@@ -1,6 +1,6 @@
-const jukeboxes = require('../services/music/jukeboxes');
+import jukeboxes from '../services/music/jukeboxes.js';
 
-module.exports = {
+const Skip = {
   name: 'skip',
   description: 'skip a song',
   guildOnly: true,
@@ -17,3 +17,5 @@ module.exports = {
     }
   },
 };
+
+export default Skip;

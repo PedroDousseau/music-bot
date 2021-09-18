@@ -1,7 +1,7 @@
-const Jukebox = require('../services/music/jukebox');
-const jukeboxes = require('../services/music/jukeboxes');
+import Jukebox from '../services/music/jukebox.js';
+import jukeboxes from '../services/music/jukeboxes.js';
 
-module.exports = {
+const Play = {
   name: 'play',
   description: 'play a song on server',
   guildOnly: true,
@@ -37,13 +37,15 @@ module.exports = {
     let key = args[0];
     let videoUrl;
 
-    const urlPattern = new RegExp('^(https?:\\/\\/)?' // protocol
-    + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' // domain name
-    + '((\\d{1,3}\\.){3}\\d{1,3}))' // OR ip (v4) address
-    + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' // port and path
-    + '(\\?[;&a-z\\d%_.~+=-]*)?' // query string
-    + '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-
+    const urlPattern = new RegExp(
+      '^(https?:\\/\\/)?' // protocol
+        + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' // domain name
+        + '((\\d{1,3}\\.){3}\\d{1,3}))' // OR ip (v4) address
+        + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' // port and path
+        + '(\\?[;&a-z\\d%_.~+=-]*)?' // query string
+        + '(\\#[-a-z\\d_]*)?$',
+      'i',
+    ); // fragment locator
 
     if (!urlPattern.test(key)) {
       key = args.join(' ');
@@ -62,3 +64,5 @@ module.exports = {
     }
   },
 };
+
+export default Play;

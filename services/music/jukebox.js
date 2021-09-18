@@ -1,5 +1,5 @@
-const ytdl = require('ytdl-core-discord');
-const axios = require('axios').default;
+import ytdl from 'ytdl-core-discord';
+import axios from 'axios';
 
 const { YOUTUBE_DATA_API_KEY } = process.env;
 
@@ -87,4 +87,4 @@ Jukebox.prototype.getVideoUrlByKey = async function getVideoUrlByKey(key) {
   }
 };
 
-module.exports = Jukebox;
+export default Jukebox;

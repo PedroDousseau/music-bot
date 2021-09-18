@@ -1,13 +1,19 @@
-const jukeboxes = require('../services/music/jukeboxes');
+import jukeboxes from '../services/music/jukeboxes.js';
 
-module.exports = {
+const Queue = {
   name: 'queue',
+
   description: 'show the cong queue',
+
   guildOnly: true,
+
   musicChannelOnly: true,
+
   userMustBeInVoiceChannel: true,
+
   execute(message, args) {
     const serverJukebox = jukeboxes.get(message.guild.id);
+
     let songList = '';
 
     if (serverJukebox) {
@@ -21,3 +27,5 @@ module.exports = {
     }
   },
 };
+
+export default Queue;

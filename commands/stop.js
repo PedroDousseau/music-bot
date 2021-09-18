@@ -1,6 +1,6 @@
-const jukeboxes = require('../services/music/jukeboxes');
+import jukeboxes from '../services/music/jukeboxes.js';
 
-module.exports = {
+const Stop = {
   name: 'stop',
   description: 'stop the jukebox and clear the queue',
   guildOnly: true,
@@ -14,3 +14,5 @@ module.exports = {
     }
   },
 };
+
+export default Stop;
