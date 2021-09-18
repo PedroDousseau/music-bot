@@ -14,9 +14,10 @@ function Jukebox(textChannel, voiceChannel) {
 
 Jukebox.prototype.addSongByUrl = async function addSongByUrl(url) {
   const songInfo = await ytdl.getInfo(url);
+
   const song = {
-    title: songInfo.title,
-    url: songInfo.video_url,
+    title: songInfo.videoDetails.title,
+    url: songInfo.videoDetails.video_url,
   };
   this.songs.push(song);
 

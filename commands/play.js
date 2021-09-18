@@ -28,7 +28,7 @@ const Play = {
         const connection = await serverJukebox.voiceChannel.join();
         serverJukebox.connection = connection;
       } catch (err) {
-        message.channel.send(err);
+        message.channel.send('Não foi possível entrar no canal de voz');
         return;
       }
     }
